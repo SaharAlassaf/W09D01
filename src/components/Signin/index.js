@@ -37,12 +37,12 @@ function Signin() {
     <>
       {!token ? (
         <>
-          <input type="text" onChange={(e) => setEmail(e.target.value)} />
+          <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
           <input
-            type="password"
+            type="password"  placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
-            <button onClick={signin}>Sign in</button>
+          <button onClick={signin}>Sign in</button>
         </>
       ) : (
         <>{admin ? <Dashboard token={token} /> : <Tasks token={token} />}</>
