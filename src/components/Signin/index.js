@@ -11,6 +11,8 @@ function Signin() {
   const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
+    setToken(localStorage.getItem("token"));
+    setAdmin(localStorage.getItem("admin"));
     signin();
   }, []);
 
@@ -37,15 +39,30 @@ function Signin() {
     <>
       {!token ? (
         <>
-          <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
           <input
-            type="password"  placeholder="Password"
+            type="email"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
           <button onClick={signin}>Sign in</button>
         </>
       ) : (
-        <>{admin ? <Dashboard token={token} /> : <Tasks token={token} />}</>
+        <>
+          {admin ? (
+            <Link to="/Dashboard">
+              <buttoun>Dashboard</buttoun>
+            </Link>
+          ) : (
+            <Link to="/Tasks">
+              <buttoun>Tasks</buttoun>
+            </Link>
+          )}
+        </>
       )}
     </>
   );

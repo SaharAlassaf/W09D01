@@ -9,6 +9,7 @@ function Signup() {
   const [token, setToken] = useState("");
 
   useEffect(() => {
+    setToken(localStorage.getItem("token"));
     signup();
   }, []);
 
@@ -30,16 +31,23 @@ function Signup() {
     <>
       {!token ? (
         <>
-          <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
           <input
-            type="password" placeholder="Password"
+            type="email"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
-            <button onClick={signup}>Sign up</button>
+          <button onClick={signup}>Sign up</button>
         </>
       ) : (
         <>
-          <Tasks token={token}/>
+          <Link to="/Tasks">
+            <buttoun>Tasks</buttoun>
+          </Link>{" "}
         </>
       )}
     </>
