@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Landing from "../Landing";
 import Task from "../Task";
 import axios from "axios";
@@ -28,6 +29,7 @@ function Dashboard() {
       console.log(error);
     }
   };
+  
 
   const deleteTasks = async (id) => {
     try {
@@ -45,6 +47,10 @@ function Dashboard() {
     }
   };
 
+  const logout = () => {
+    localStorage.clear();
+  }
+
   return (
     <>
       {token ? (
@@ -59,7 +65,9 @@ function Dashboard() {
               />
             ))}
           </ul>
-          <h1>Dashboard</h1>
+          <Link to="/">
+          <button onClick={logout}>log out</button>
+          </Link>
         </>
       ) : (
         <Landing />
